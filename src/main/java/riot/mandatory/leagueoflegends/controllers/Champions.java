@@ -10,6 +10,8 @@ import riot.mandatory.leagueoflegends.repositories.SummonerRepository;
 
 public class Champions {
 
+    @Autowired
+    ChampionRepository champions;
 
 
     @GetMapping("/champions")
