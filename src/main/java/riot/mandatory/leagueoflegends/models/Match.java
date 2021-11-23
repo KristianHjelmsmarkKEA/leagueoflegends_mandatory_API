@@ -20,7 +20,8 @@ public class Match {
     private MatchType matchType;
 
     @Column
-    private boolean gameResult;
+    @Enumerated(value = EnumType.STRING)
+    private GameResult gameResult;
 
     @Column
     private int kills;

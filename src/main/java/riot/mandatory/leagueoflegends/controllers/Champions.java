@@ -8,11 +8,9 @@ import riot.mandatory.leagueoflegends.models.Summoner;
 import riot.mandatory.leagueoflegends.repositories.ChampionRepository;
 import riot.mandatory.leagueoflegends.repositories.SummonerRepository;
 
-@RestController
 public class Champions {
 
-    @Autowired
-    ChampionRepository champions;
+
 
     @GetMapping("/champions")
     public Iterable<Champion> getChampion() {
