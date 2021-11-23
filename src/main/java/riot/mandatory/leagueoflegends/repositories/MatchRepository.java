@@ -1,4 +1,7 @@
 package riot.mandatory.leagueoflegends.repositories;
 
-public interface MatchRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import riot.mandatory.leagueoflegends.models.Match;
+
+public interface MatchRepository extends JpaRepository<Match, Long> {
 }
