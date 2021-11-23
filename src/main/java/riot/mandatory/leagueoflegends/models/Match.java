@@ -14,4 +14,23 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
+
+    @Column
+    @Enumerated(value = EnumType.STRING)
+    private MatchType matchType;
+
+    @Column
+    private boolean gameResult;
+
+    @Column
+    private int kills;
+
+    @Column
+    private int deaths;
+
+    @Column
+    private int assists;
+
+    @Column
+    private int ultCasts;
 }

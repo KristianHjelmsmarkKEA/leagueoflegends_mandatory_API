@@ -14,4 +14,22 @@ public class Summoner {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
+
+    @Column
+    private String summonerId;
+
+    @Column
+    private String puuId;
+
+    @Column
+    private String name;
+
+    @Column
+    private String tier;
+
+    @Column
+    private String rank;
+
+    @Column
+    private int leaguePoints;
 }

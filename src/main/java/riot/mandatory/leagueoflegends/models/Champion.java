@@ -14,4 +14,13 @@ public class Champion {
     @Column
     private Long id;
 
+    @Column
+    private String championId;
+
+    @Column
+    private String championName;
+
+    @Column
+    private String championImage;
+
 }
