@@ -28,7 +28,7 @@ public class Summoner {
     private String tier;
 
     @Column
-    private String rank;
+    private String soloRank;
 
     @Column
     private int leaguePoints;
