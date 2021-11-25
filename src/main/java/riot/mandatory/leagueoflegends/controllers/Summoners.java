@@ -23,6 +23,7 @@ public class Summoners {
 
     @PostMapping("/summoners")
     public Summoner addSummoner(@RequestBody Summoner newSummoner) {
+        newSummoner.setId(null);
         return summoners.save(newSummoner);
     }
 
@@ -43,6 +44,7 @@ public class Summoners {
             if(summonerToUpdate.getSummonerId() != null) foundSummoner.setSummonerId(summonerToUpdate.getName());
             if(summonerToUpdate.getPuuId() != null) foundSummoner.setPuuId(summonerToUpdate.getPuuId());
             if(summonerToUpdate.getName() != null) foundSummoner.setName(summonerToUpdate.getName());
+            summoners.save(foundSummoner);
             return "Summoner updated";
         }).orElse("Summoner not found");
     }

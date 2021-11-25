@@ -1,8 +1,3 @@
-const riotKey = 'RGAPI-476d9838-d954-4b2a-8a93-13ccdfeece30';
-const summonerSearchInput = document.getElementById("summoner-name");
-const summonerAccSearchLink = "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearchInput + "?api_key=" + riotKey;
-const localurl = "http://localhost:9191";
-
 
 fetch(localurl + "/summoners")
     .then(response => response.json())
@@ -38,6 +33,8 @@ function createSummoner(divElement, summoner){
 document.getElementById("search-summoner-name").addEventListener("click", searchForSummoner);
 
 function searchForSummoner(){
+    const summonerSearchInput = document.getElementById("summoner-name").value;
+    const summonerAccSearchLink = "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearchInput + "?api_key=" + riotKey;
     fetch(summonerAccSearchLink)
         .then(response => response.json())
         .then(summoner => {
@@ -49,7 +46,7 @@ function saveSummonerAccInfo(summoner) {
     let summonerAccToSave = {
         summonerId: summoner.id,
         accountId: summoner.accountId,
-        puuId: summoner.puuId,
+        puuId: summoner.puuid,
         name: summoner.name,
     };
 
