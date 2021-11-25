@@ -22,7 +22,7 @@ function addSummonerInfoToDiv(summoner){
 
 function createSummoner(divElement, summoner){
     divElement.innerHTML = `
-    <a href="./summonersMatches.html?summonerId=${summoner.id}">
+    <a href="./matchhistory.html?puuId=${summoner.id}">
     <h1>
     ${escapeHTML(summoner.name)}
     </h1>
@@ -34,8 +34,7 @@ document.getElementById("search-summoner-name").addEventListener("click", search
 
 function searchForSummoner(){
     const summonerSearchInput = document.getElementById("summoner-name").value;
-    const summonerAccSearchLink = "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearchInput + "?api_key=" + riotKey;
-    fetch(summonerAccSearchLink)
+    fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearchInput + "?api_key=" + riotKey)
         .then(response => response.json())
         .then(summoner => {
             saveSummonerAccInfo(summoner)
