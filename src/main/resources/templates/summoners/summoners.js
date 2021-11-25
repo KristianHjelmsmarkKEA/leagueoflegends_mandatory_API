@@ -1,15 +1,21 @@
 const summonerDiv = document.getElementById("summoner-gallery");
 const riotKey = 'RGAPI-476d9838-d954-4b2a-8a93-13ccdfeece30';
-const summonerAccSearchLink = "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + name + "?api_key= " + (riotKey);
+const summonerAccSearchLink = "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + name + "?api_key=" + riotKey;
 
 
 
-fetch(summonerAccSearchLink)
+fetch(localurl + "/summoners")
     .then(response => response.json())
-    .then(summoner => {
-        saveSummonerAccInfo(summoner)
+    .then(summoners => {
+        summoners.map(createSummonerList);
+    })
 
-    });
+function createSummonerList(summoner) {
+    const summonerElement = document.createElement("div");
+    summonerElement.innerText = summoner.name;
+
+    summonerDiv.appendChild(summonerElement);
+}
 
 function addSummonerInfoToDiv(summoner){
     const summonerToDiv = document.createElement("div");
@@ -41,7 +47,7 @@ function saveSummonerAccInfo(summoner) {
         body: JSON.stringify(summonerAccToSave)
     }).then(response => {
         if (response.status === 200) {
-            addSummonerInfoToDiv(summoner);
+            addSummonerInfoToDiv(summonerAccToSave);
         } else {
             console.log("summoner not created", respone.status);
         }

@@ -43,10 +43,6 @@ public class Summoners {
             if(summonerToUpdate.getSummonerId() != null) foundSummoner.setSummonerId(summonerToUpdate.getName());
             if(summonerToUpdate.getPuuId() != null) foundSummoner.setPuuId(summonerToUpdate.getPuuId());
             if(summonerToUpdate.getName() != null) foundSummoner.setName(summonerToUpdate.getName());
-            if(summonerToUpdate.getTier() != null) foundSummoner.setTier(summonerToUpdate.getTier());
-            if(summonerToUpdate.getQueueType() != null) foundSummoner.setQueueType(summonerToUpdate.getQueueType());
-            if(summonerToUpdate.getLeaguePoints() != 0) foundSummoner.setLeaguePoints(summonerToUpdate.getLeaguePoints());
-            summoners.save(foundSummoner);
             return "Summoner updated";
         }).orElse("Summoner not found");
     }

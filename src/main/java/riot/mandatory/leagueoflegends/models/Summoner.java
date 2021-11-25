@@ -27,12 +27,4 @@ public class Summoner {
     @Column
     private String name;
 
-    @Column
-    private String tier;
-
-    @Column
-    private String queueType;
-
-    @Column
-    private int leaguePoints;
 }
