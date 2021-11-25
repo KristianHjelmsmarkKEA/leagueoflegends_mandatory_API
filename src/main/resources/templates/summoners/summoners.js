@@ -17,7 +17,7 @@ function addSummonerInfoToDivList(summoner){
 
 function createSummoner(divElement, summoner){
     divElement.innerHTML = `
-    <a href="./summonersMatches.html?summonerId=${summoner.puuId}">
+    <a href="./matchhistory.html?puuId=${summoner.puuId}">
     <h1>
     ${escapeHTML(summoner.name)}
     </h1>

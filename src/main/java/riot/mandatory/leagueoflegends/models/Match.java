@@ -16,6 +16,9 @@ public class Match {
     private Long id;
 
     @Column
+    private String matchId;
+
+    @Column
     @Enumerated(value = EnumType.STRING)
     private MatchType matchType;
 
