@@ -1,14 +1,15 @@
 const summonerDiv = document.getElementById("summoner-gallery");
-const riotKey = 'RGAPI-affcec8b-e850-4ebc-91b5-0ee691fd276f';
-const summonerAccSearchLink = "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + name + "?api_key= " + (riotKey);
-const localurl = "http://localhost:8080";
+const riotKey = 'RGAPI-476d9838-d954-4b2a-8a93-13ccdfeece30';
+const summonerSearchInput = document.getElementById("summoner-name");
+const summonerAccSearchLink = "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearchInput + "?api_key= " + (riotKey);
+const localurl = "http://localhost:9191";
 
-    fetch(localurl + "/summoners")
-        .then(response => response.json())
-        .then(summoners => {
-            summoners.map(createSummonerList);
-        })
 
+fetch(localurl + "/summoners")
+    .then(response => response.json())
+    .then(summoners => {
+        summoners.map(createSummonerList);
+    })
 
 const summonerListWrapper = document.getElementById("summoner-list");
 
@@ -35,6 +36,16 @@ function createSummoner(divElement, summoner){
     `;
 }
 
+document.getElementById("search-summoner-name").addEventListener("click", searchForSummoner);
+
+function searchForSummoner(){
+    fetch(summonerAccSearchLink)
+        .then(response => response.json())
+        .then(summoner => {
+            saveSummonerAccInfo(summoner)
+        })
+};
+
 function saveSummonerAccInfo(summoner) {
     let summonerAccToSave = {
         summonerId: summoner.id,
@@ -43,7 +54,7 @@ function saveSummonerAccInfo(summoner) {
         name: summoner.name,
     };
 
-    fetch(summonerAccSearchLink, {
+    fetch(localurl + "/summoners", {
         method: "POST",
         headers: {"Content-type": "application/json"},
         body: JSON.stringify(summonerAccToSave)
@@ -57,9 +68,6 @@ function saveSummonerAccInfo(summoner) {
         .catch(error => console.log("network error" + error));
 }
 
-
-document.getElementById("search-for-summoner")
-    .addEventListener("click", saveSummonerAccInfo);
 
 
 
