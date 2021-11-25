@@ -2,19 +2,14 @@
 fetch(localurl + "/summoners")
     .then(response => response.json())
     .then(summoners => {
-        summoners.map(createSummonerList);
+        summoners.map(addSummonerInfoToDivList);
     })
 
 const summonerListWrapper = document.getElementById("summoner-list");
 
-function createSummonerList(summoner) {
-    const summonerElement = document.createElement("div");
-    summonerElement.innerText = summoner.name;
 
-    summonerListWrapper.appendChild(summonerElement);
-}
 
-function addSummonerInfoToDiv(summoner){
+function addSummonerInfoToDivList(summoner){
     const summonerToDiv = document.createElement("div");
     summonerListWrapper.appendChild(summonerToDiv);
     createSummoner(summonerToDiv, summoner);
@@ -22,7 +17,7 @@ function addSummonerInfoToDiv(summoner){
 
 function createSummoner(divElement, summoner){
     divElement.innerHTML = `
-    <a href="./summonersMatches.html?summonerId=${summoner.id}">
+    <a href="./summonersMatches.html?summonerId=${summoner.puuId}">
     <h1>
     ${escapeHTML(summoner.name)}
     </h1>
@@ -34,8 +29,7 @@ document.getElementById("search-summoner-name").addEventListener("click", search
 
 function searchForSummoner(){
     const summonerSearchInput = document.getElementById("summoner-name").value;
-    const summonerAccSearchLink = "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearchInput + "?api_key=" + riotKey;
-    fetch(summonerAccSearchLink)
+    fetch("https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearchInput + "?api_key=" + riotKey)
         .then(response => response.json())
         .then(summoner => {
             saveSummonerAccInfo(summoner)
@@ -56,7 +50,7 @@ function saveSummonerAccInfo(summoner) {
         body: JSON.stringify(summonerAccToSave)
     }).then(response => {
         if (response.status === 200) {
-            addSummonerInfoToDiv(summonerAccToSave);
+            addSummonerInfoToDivList(summonerAccToSave);
         } else {
             console.log("summoner not created", response.status);
         }
