@@ -12,11 +12,13 @@ fetch(localurl + "/summoners")
         summoners.map(createSummonerList);
     })
 
+const summonerListWrapper = document.getElementById("summoner-list");
+
 function createSummonerList(summoner) {
     const summonerElement = document.createElement("div");
     summonerElement.innerText = summoner.name;
 
-    summonerDiv.appendChild(summonerElement);
+    summonerListWrapper.appendChild(summonerElement);
 }
 
 function addSummonerInfoToDiv(summoner){
