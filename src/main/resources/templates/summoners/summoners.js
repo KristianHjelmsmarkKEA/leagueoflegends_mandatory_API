@@ -8,7 +8,6 @@ fetch(localurl + "/summoners")
 const summonerListWrapper = document.getElementById("summoner-list");
 
 
-
 function addSummonerInfoToDivList(summoner){
     const summonerToDiv = document.createElement("div");
     summonerListWrapper.appendChild(summonerToDiv);
