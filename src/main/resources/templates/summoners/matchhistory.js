@@ -1,31 +1,25 @@
-
+const matchHistoryGalleryDiv = document.getElementById("match-history-gallery");
 fetch(localurl + "/matches")
     .then(response => response.json())
     .then(matches => {
         matches.map(createMatchCard)
     });
-
-const matchHistoryGalleryDiv = document.getElementById("match-history-gallery");
-
-
 function createMatchCard(match) {
     const matchCardDiv = document.createElement("div");
     matchHistoryGalleryDiv.appendChild(matchCardDiv);
-    createMatchCard(matchCardDiv, match);
+    constructAMatchCard(matchCardDiv, match);
 }
 
-function createMatchCard(matchDiv, match) {
-    matchDiv.innerHTML = `
-        <h1>${escapeHTML(match.id)}</h1>
+function constructAMatchCard(matchesDiv, match) {
+    matchesDiv.innerHTML = `
+        <h1>${escapeHTML(match.id.toString())}</h1>
     `;
 }
-
-function updateMatchtHistory(){
+function updateMatchHistory(){
     const summonerSearchInput = document.getElementById("summoner-name").value;
     fetch("https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuId + "/ids?start=0&count=1&api_key=" + riotKey)
         .then(response => response.json())
         .then(match => {
-            if (matchId === match.matchId )
             saveNewestMatchHistory(match)
         })
 };

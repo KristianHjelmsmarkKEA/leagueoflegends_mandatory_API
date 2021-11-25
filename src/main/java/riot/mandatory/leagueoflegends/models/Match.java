@@ -20,10 +20,6 @@ public class Match {
 
     @Column
     @Enumerated(value = EnumType.STRING)
-    private MatchType matchType;
-
-    @Column
-    @Enumerated(value = EnumType.STRING)
     private GameResult gameResult;
 
     @Column
