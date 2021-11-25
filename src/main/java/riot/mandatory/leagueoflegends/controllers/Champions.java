@@ -7,7 +7,7 @@ import riot.mandatory.leagueoflegends.models.Champion;
 import riot.mandatory.leagueoflegends.models.Summoner;
 import riot.mandatory.leagueoflegends.repositories.ChampionRepository;
 import riot.mandatory.leagueoflegends.repositories.SummonerRepository;
-
+@RestController
 public class Champions {
 
     @Autowired
