@@ -1,7 +1,6 @@
-const summonerDiv = document.getElementById("summoner-gallery");
 const riotKey = 'RGAPI-476d9838-d954-4b2a-8a93-13ccdfeece30';
 const summonerSearchInput = document.getElementById("summoner-name");
-const summonerAccSearchLink = "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearchInput + "?api_key= " + (riotKey);
+const summonerAccSearchLink = "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerSearchInput + "?api_key=" + riotKey;
 const localurl = "http://localhost:9191";
 
 
@@ -22,7 +21,7 @@ function createSummonerList(summoner) {
 
 function addSummonerInfoToDiv(summoner){
     const summonerToDiv = document.createElement("div");
-    summonerDiv.appendChild(summonerToDiv);
+    summonerListWrapper.appendChild(summonerToDiv);
     createSummoner(summonerToDiv, summoner);
 }
 
