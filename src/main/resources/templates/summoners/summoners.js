@@ -1,14 +1,14 @@
 const summonerDiv = document.getElementById("summoner-gallery");
 const riotKey = 'RGAPI-affcec8b-e850-4ebc-91b5-0ee691fd276f';
 const summonerAccSearchLink = "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + name + "?api_key= " + (riotKey);
+const localurl = "http://localhost:8080";
 
+    fetch(localurl + "/summoners")
+        .then(response => response.json())
+        .then(summoners => {
+            summoners.map(createSummonerList);
+        })
 
-
-fetch(localurl + "/summoners")
-    .then(response => response.json())
-    .then(summoners => {
-        summoners.map(createSummonerList);
-    })
 
 const summonerListWrapper = document.getElementById("summoner-list");
 
