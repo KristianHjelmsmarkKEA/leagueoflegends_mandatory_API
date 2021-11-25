@@ -63,7 +63,8 @@ fetch(localurl + "/summoners", {
 })
     .catch(error => console.log("network error" + error));
 
-
+document.getElementById("add-new-summoner-button")
+    .addEventListener("click", saveSummonerAccInfo, saveSummonerRankInfo);
 
 
 
