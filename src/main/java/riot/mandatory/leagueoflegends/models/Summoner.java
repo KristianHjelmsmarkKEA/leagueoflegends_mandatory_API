@@ -19,6 +19,9 @@ public class Summoner {
     private String summonerId;
 
     @Column
+    private String accountId;
+
+    @Column
     private String puuId;
 
     @Column
@@ -28,7 +31,7 @@ public class Summoner {
     private String tier;
 
     @Column
-    private String soloRank;
+    private String queueType;
 
     @Column
     private int leaguePoints;
