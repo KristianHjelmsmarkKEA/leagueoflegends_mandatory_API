@@ -44,7 +44,7 @@ public class Summoners {
             if(summonerToUpdate.getPuuId() != null) foundSummoner.setPuuId(summonerToUpdate.getPuuId());
             if(summonerToUpdate.getName() != null) foundSummoner.setName(summonerToUpdate.getName());
             if(summonerToUpdate.getTier() != null) foundSummoner.setTier(summonerToUpdate.getTier());
-            if(summonerToUpdate.getSoloRank() != null) foundSummoner.setSoloRank(summonerToUpdate.getSoloRank());
+            if(summonerToUpdate.getQueueType() != null) foundSummoner.setQueueType(summonerToUpdate.getQueueType());
             if(summonerToUpdate.getLeaguePoints() != 0) foundSummoner.setLeaguePoints(summonerToUpdate.getLeaguePoints());
             summoners.save(foundSummoner);
             return "Summoner updated";
