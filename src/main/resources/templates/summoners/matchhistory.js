@@ -95,18 +95,18 @@ function createMatchCard(match) {
 }
 
 function constructAMatchCard(matchesDiv, match) {
-    let gameResult;
+    let gameResultWinLoss;
     if (match.gameResult === true) {
-        gameResult = "Win";
+        gameResultWinLoss = "Win";
     } else {
-        gameResult = "Loss";
+        gameResultWinLoss = "Loss";
     }
 
     matchHistoryGalleryDiv.appendChild(matchesDiv);
     matchesDiv.innerHTML = `
     <ul>
     <li>${escapeHTML("matchId: " + match.matchId.toString())}</li>
-    <li>${escapeHTML("Game Result: " + match.gameResult.toString())}</li>
+    <li>${escapeHTML("Game Result: " + gameResultWinLoss.toString())}</li>
     <li>${escapeHTML("Kills: " + match.kills.toString())}</li>
     <li>${escapeHTML("Deaths: " + match.deaths.toString())}</li>
     <li>${escapeHTML("Assists: " + match.assists.toString())}</li>
