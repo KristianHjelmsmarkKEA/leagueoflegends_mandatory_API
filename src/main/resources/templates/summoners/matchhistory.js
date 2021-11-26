@@ -45,8 +45,8 @@ function getMatchInformation(match) {
             saveMatchInformation(match);
             console.log(match);
         })
-
 }
+
 
 function saveMatchInformation(match) {
     let matchHistoryToSave = {
