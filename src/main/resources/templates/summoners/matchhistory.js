@@ -30,6 +30,7 @@ function deleteGallery() {
 
 function getMatchIds(){
     deleteGallery()
+
     fetch("https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuId + "/ids?start=0&count=5&api_key=" + riotKey)
         .then(response => response.json())
         .then(match => {
@@ -94,9 +95,22 @@ function createMatchCard(match) {
 }
 
 function constructAMatchCard(matchesDiv, match) {
+    let gameResult;
+    if (match.gameResult === true) {
+        gameResult = "Win";
+    } else {
+        gameResult = "Loss";
+    }
+
+    matchHistoryGalleryDiv.appendChild(matchesDiv);
     matchesDiv.innerHTML = `
-    <h1>
-        ${escapeHTML(match.matchId)}
-    </h1>
-    `
+    <ul>
+    <li>${escapeHTML("matchId: " + match.matchId.toString())}</li>
+    <li>${escapeHTML("Game Result: " + match.gameResult.toString())}</li>
+    <li>${escapeHTML("Kills: " + match.kills.toString())}</li>
+    <li>${escapeHTML("Deaths: " + match.deaths.toString())}</li>
+    <li>${escapeHTML("Assists: " + match.assists.toString())}</li>
+    <li>${escapeHTML("Ultimate casts: " + match.ultCasts.toString())}</li>
+    </ul>
+    `;
 }

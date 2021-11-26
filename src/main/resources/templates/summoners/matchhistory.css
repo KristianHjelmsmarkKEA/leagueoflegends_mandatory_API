@@ -1,0 +1,19 @@
+#match-history-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    border-spacing: 20px;
+    border-width: 5px;
+
+}
+ul > li {
+    display: block;
+    text-align: center;
+    flex: 1 0 auto;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 4px 7px;
+    border: 2px solid rgba(0,0,0,.3);
+    background-color: rgba(0,0,0,.03);
+}
