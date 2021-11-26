@@ -12,20 +12,6 @@ fetch(localurl + "/matches")
         dbMatches = matches.matchId;
     });
 
-function createMatchCard(match) {
-    const matchCardDiv = document.createElement("div");
-    matchHistoryGalleryDiv.appendChild(matchCardDiv);
-    constructAMatchCard(matchCardDiv, match);
-}
-
-function constructAMatchCard(matchesDiv, match) {
-    matchesDiv.innerHTML = `
-    <h1>
-        ${escapeHTML(match.matchId)}
-    </h1>
-    `
-
-}
 
 document.getElementById("update-match-history").addEventListener("click", getMatchIds);
 
@@ -60,3 +46,36 @@ function saveMatchInformation(match) {
     createMatchCard(matchHistoryToSave)
 }
 
+
+function createMatchCard(match) {
+    const matchCardDiv = document.createElement("div");
+    matchHistoryGalleryDiv.appendChild(matchCardDiv);
+    constructAMatchCard(matchCardDiv, match);
+}
+
+function constructAMatchCard(matchesDiv, match) {
+    matchesDiv.innerHTML = `
+    <h1>
+        ${escapeHTML(match.matchId)}
+    </h1>
+    `
+
+}
+function saveMatchID(Match) {
+    let MatchIDToSave = {
+        matchId: match.matchId,
+    };
+
+    fetch(localurl + "/matches", {
+        method: "POST",
+        headers: {"Content-type": "application/json"},
+        body: JSON.stringify(matchIDToSave)
+    }).then(response => {
+        if (response.status === 200) {
+            addSummonerInfoToDivList(matchIDToSave);
+        } else {
+            console.log("summoner not created", response.status);
+        }
+    })
+        .catch(error => console.log("network error" + error));
+}
