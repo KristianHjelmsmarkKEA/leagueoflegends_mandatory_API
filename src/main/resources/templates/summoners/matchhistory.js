@@ -36,17 +36,25 @@ function getMatchInformation(match) {
 
 
 function saveMatchInformation(match) {
+    let summonerFound;
+
+    console.log(puuId);
+    console.log(match.info.participants[7].puuid);
     match.info.participants.map(summoner => {
-        if (summoner.puuId === puuId) {
-            let matchHistoryToSave = {
-                matchId: match.metadata.matchId,
-                puuId: summoner.puuid,
-                gameResult: summoner.win,
-                kills: summoner.kills,
-                deaths: summoner.deaths,
-                assists: summoner.assists,
-                ultCasts: summoner.spell4Casts
-            };
+        if (summoner.puuid === puuId) {
+            summonerFound = summoner;
+            console.log(summonerFound);
+        }
+    });
+    let matchHistoryToSave = {
+        matchId: match.metadata.matchId,
+        matchPuuId: summonerFound.puuid,
+        gameResult: summonerFound.win,
+        kills: summonerFound.kills,
+        deaths: summonerFound.deaths,
+        assists: summonerFound.assists,
+        ultCasts: summonerFound.spell4Casts
+    };
 
             console.log(matchHistoryToSave);
 
@@ -64,10 +72,8 @@ function saveMatchInformation(match) {
             })
                 .catch(error => console.log("network error" + error));
 
-        }
-    })
-}
 
+}
 
 function createMatchCard(match) {
     const matchCardDiv = document.createElement("div");
