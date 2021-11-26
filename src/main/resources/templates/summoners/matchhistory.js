@@ -66,7 +66,8 @@ function saveMatchInformation(match) {
         kills: summonerFound.kills,
         deaths: summonerFound.deaths,
         assists: summonerFound.assists,
-        ultCasts: summonerFound.spell4Casts
+        ultCasts: summonerFound.spell4Casts,
+        champName: summonerFound.championName
     };
 
             console.log(matchHistoryToSave);
@@ -105,12 +106,12 @@ function constructAMatchCard(matchesDiv, match) {
     matchHistoryGalleryDiv.appendChild(matchesDiv);
     matchesDiv.innerHTML = `
     <ul>
-    <li>${escapeHTML("matchId: " + match.matchId.toString())}</li>
+    <img src="https://static.u.gg/assets/lol/riot_static/11.23.1/img/champion/${match.champName}.png")>
     <li>${escapeHTML("Game Result: " + gameResultWinLoss.toString())}</li>
     <li>${escapeHTML("Kills: " + match.kills.toString())}</li>
     <li>${escapeHTML("Deaths: " + match.deaths.toString())}</li>
     <li>${escapeHTML("Assists: " + match.assists.toString())}</li>
     <li>${escapeHTML("Ultimate casts: " + match.ultCasts.toString())}</li>
-    </ul>
+    <li>${escapeHTML("Champion: " + match.champName.toString())}</li>
     `;
 }

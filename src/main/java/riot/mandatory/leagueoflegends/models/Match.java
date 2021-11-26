@@ -35,4 +35,7 @@ public class Match {
 
     @Column
     private int ultCasts;
+
+    @Column
+    private String champName;
 }
