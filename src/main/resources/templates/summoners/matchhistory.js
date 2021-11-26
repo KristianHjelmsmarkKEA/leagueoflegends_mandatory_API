@@ -69,7 +69,10 @@ function saveMatchInformation(match) {
         deaths: summonerFound.deaths,
         assists: summonerFound.assists,
         ultCasts: summonerFound.spell4Casts,
-        champName: summonerFound.championName
+        champName: summonerFound.championName,
+        matchDur: summonerFound.timePlayed,
+        physDmgToChamps: summonerFound.physicalDamageDealtToChampions,
+        magicDmgToChamps: summonerFound.magicDamageDealtToChampions
     };
 
             console.log(matchHistoryToSave);
@@ -115,6 +118,6 @@ function constructAMatchCard(matchesDiv, match) {
     <li>${escapeHTML("Deaths: " + match.deaths.toString())}</li>
     <li>${escapeHTML("Assists: " + match.assists.toString())}</li>
     <li>${escapeHTML("Ultimate casts: " + match.ultCasts.toString())}</li>
-    
+    <li>Damage Per Minute: ${(match.physDmgToChamps+match.magicDmgToChamps)/(match.matchDur/60)}</li>
     `;
 }

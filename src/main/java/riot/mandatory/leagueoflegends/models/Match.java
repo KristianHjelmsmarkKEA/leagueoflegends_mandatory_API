@@ -38,4 +38,7 @@ public class Match {
 
     @Column
     private String champName;
+
+    @Column
+    private int matchDur;
 }
