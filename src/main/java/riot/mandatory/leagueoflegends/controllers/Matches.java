@@ -57,4 +57,7 @@ public class Matches {
         matches.deleteById(id);
     }
 
+    @DeleteMapping("/matches/delete/all")
+    public void deleteAllMatches() {matches.deleteAll();}
+
 }

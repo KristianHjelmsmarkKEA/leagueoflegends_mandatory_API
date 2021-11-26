@@ -3,9 +3,9 @@ const URLParams = new URLSearchParams(queryString);
 const puuId = URLParams.get("puuId");
 console.log(puuId);
 let dbMatches;
-
 const matchHistoryGalleryDiv = document.getElementById("match-history-gallery");
-fetch(localurl + "/matches")
+
+fetch(localurl + "/matches/" + puuId)
     .then(response => response.json())
     .then(matches => {
         matches.map(createMatchCard);
@@ -16,8 +16,21 @@ fetch(localurl + "/matches")
 
 document.getElementById("update-match-history").addEventListener("click", getMatchIds);
 
+function deleteGallery() {
+    fetch(localurl + "/matches/delete/all/", {
+        method: "DELETE"
+    }).then(response => {
+        if (response.status === 200) {
+            console.log("Matches deleted");
+        } else {
+            console.log(response.status);
+        }
+    });
+}
+
 function getMatchIds(){
-    fetch("https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuId + "/ids?start=0&count=1&api_key=" + riotKey)
+    deleteGallery()
+    fetch("https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuId + "/ids?start=0&count=5&api_key=" + riotKey)
         .then(response => response.json())
         .then(match => {
             match.map(getMatchInformation)
@@ -33,7 +46,6 @@ function getMatchInformation(match) {
             console.log(match);
         })
 }
-
 
 function saveMatchInformation(match) {
     let summonerFound;
