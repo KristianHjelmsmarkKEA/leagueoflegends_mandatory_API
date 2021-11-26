@@ -16,11 +16,13 @@ public class Match {
     private Long id;
 
     @Column
+    private String matchPuuId;
+
+    @Column
     private String matchId;
 
     @Column
-    @Enumerated(value = EnumType.STRING)
-    private GameResult gameResult;
+    private boolean gameResult;
 
     @Column
     private int kills;

@@ -8,9 +8,10 @@ const matchHistoryGalleryDiv = document.getElementById("match-history-gallery");
 fetch(localurl + "/matches")
     .then(response => response.json())
     .then(matches => {
-        matches.map(createMatchCard)
+        matches.map(createMatchCard);
         dbMatches = matches.matchId;
     });
+
 
 
 document.getElementById("update-match-history").addEventListener("click", getMatchIds);
@@ -35,15 +36,36 @@ function getMatchInformation(match) {
 
 
 function saveMatchInformation(match) {
-    let matchHistoryToSave = {
-        matchId: match.matchId,
-        gameResult: match.gameResult,
-        kills: match.kills,
-        deaths: match.name,
-        assists: match.assists,
-        ultCasts: match.ultCasts,
-    };
-    createMatchCard(matchHistoryToSave)
+    match.info.participants.map(summoner => {
+        if (summoner.puuId === puuId) {
+            let matchHistoryToSave = {
+                matchId: match.metadata.matchId,
+                puuId: summoner.puuid,
+                gameResult: summoner.win,
+                kills: summoner.kills,
+                deaths: summoner.deaths,
+                assists: summoner.assists,
+                ultCasts: summoner.spell4Casts
+            };
+
+            console.log(matchHistoryToSave);
+
+            fetch(localurl + "/matches", {
+                method: "POST",
+                headers: {"Content-type": "application/json"},
+                body: JSON.stringify(matchHistoryToSave)
+            }).then(response => {
+                if (response.status === 200) {
+                    createMatchCard(matchHistoryToSave);
+                    console.log(matchHistoryToSave);
+                } else {
+                    console.log("Match not created", response.status);
+                }
+            })
+                .catch(error => console.log("network error" + error));
+
+        }
+    })
 }
 
 
@@ -59,23 +81,4 @@ function constructAMatchCard(matchesDiv, match) {
         ${escapeHTML(match.matchId)}
     </h1>
     `
-
-}
-function saveMatchID(Match) {
-    let MatchIDToSave = {
-        matchId: match.matchId,
-    };
-
-    fetch(localurl + "/matches", {
-        method: "POST",
-        headers: {"Content-type": "application/json"},
-        body: JSON.stringify(matchIDToSave)
-    }).then(response => {
-        if (response.status === 200) {
-            addSummonerInfoToDivList(matchIDToSave);
-        } else {
-            console.log("summoner not created", response.status);
-        }
-    })
-        .catch(error => console.log("network error" + error));
 }

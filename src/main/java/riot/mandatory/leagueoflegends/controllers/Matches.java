@@ -42,7 +42,7 @@ public class Matches {
     @PatchMapping("/matches/{id}")
     public String patchMatchById(@PathVariable Long id, @RequestBody Match matchToUpdateWith) {
         return matches.findById(id).map(foundMatch -> {
-            if (matchToUpdateWith.getGameResult() != null) foundMatch.setGameResult(matchToUpdateWith.getGameResult());
+            if (matchToUpdateWith.isGameResult() != false) foundMatch.setGameResult(matchToUpdateWith.isGameResult());
             if (matchToUpdateWith.getKills() != 0) foundMatch.setKills(matchToUpdateWith.getKills());
             if (matchToUpdateWith.getDeaths() != 0) foundMatch.setDeaths(matchToUpdateWith.getDeaths());
             if (matchToUpdateWith.getAssists() != 0) foundMatch.setAssists(matchToUpdateWith.getAssists());
