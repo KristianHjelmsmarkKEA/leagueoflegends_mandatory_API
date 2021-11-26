@@ -4,6 +4,7 @@ const puuId = URLParams.get("puuId");
 console.log(puuId);
 let dbMatches;
 const matchHistoryGalleryDiv = document.getElementById("match-history-gallery");
+let summonerNameING;
 
 fetch(localurl + "/matches/" + puuId)
     .then(response => response.json())
@@ -57,6 +58,7 @@ function saveMatchInformation(match) {
         if (summoner.puuid === puuId) {
             summonerFound = summoner;
             console.log(summonerFound);
+            summonerNameING = summoner.summonerName;
         }
     });
     let matchHistoryToSave = {
@@ -107,11 +109,12 @@ function constructAMatchCard(matchesDiv, match) {
     matchesDiv.innerHTML = `
     <ul>
     <img src="https://static.u.gg/assets/lol/riot_static/11.23.1/img/champion/${match.champName}.png")>
+    <li>${escapeHTML(match.champName.toString())}</li>
     <li>${escapeHTML("Game Result: " + gameResultWinLoss.toString())}</li>
     <li>${escapeHTML("Kills: " + match.kills.toString())}</li>
     <li>${escapeHTML("Deaths: " + match.deaths.toString())}</li>
     <li>${escapeHTML("Assists: " + match.assists.toString())}</li>
     <li>${escapeHTML("Ultimate casts: " + match.ultCasts.toString())}</li>
-    <li>${escapeHTML("Champion: " + match.champName.toString())}</li>
+    
     `;
 }
