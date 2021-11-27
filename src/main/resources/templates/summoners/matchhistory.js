@@ -4,7 +4,10 @@ const puuId = URLParams.get("puuId");
 console.log(puuId);
 let dbMatches;
 const matchHistoryGalleryDiv = document.getElementById("match-history-gallery");
-let summonerNameING;
+const championMasteryDiv = document.getElementById("upperInformationBox");
+
+
+
 
 fetch(localurl + "/matches/" + puuId)
     .then(response => response.json())
@@ -52,17 +55,16 @@ function getMatchInformation(match) {
 function saveMatchInformation(match) {
     let summonerFound;
 
-    console.log(puuId);
-    console.log(match.info.participants[7].puuid);
     match.info.participants.map(summoner => {
         if (summoner.puuid === puuId) {
             summonerFound = summoner;
             console.log(summonerFound);
-            summonerNameING = summoner.summonerName;
         }
     });
+
     let matchHistoryToSave = {
         matchId: match.metadata.matchId,
+        summonerNameING: summonerFound.summonerName,
         matchPuuId: summonerFound.puuid,
         gameResult: summonerFound.win,
         kills: summonerFound.kills,
@@ -75,7 +77,9 @@ function saveMatchInformation(match) {
         magicDmgToChamps: summonerFound.magicDamageDealtToChampions
     };
 
+
             console.log(matchHistoryToSave);
+
 
             fetch(localurl + "/matches", {
                 method: "POST",
@@ -93,6 +97,17 @@ function saveMatchInformation(match) {
 
 
 }
+
+
+const championMasteryButton = document.createElement("a");
+
+championMasteryButton.innerHTML = `
+<a href="../champions.html?puuId=${puuId}">
+<button>Summoner Champion Mastery List</button>
+</a>
+`;
+championMasteryDiv.appendChild(championMasteryButton);
+
 
 function createMatchCard(match) {
     const matchCardDiv = document.createElement("div");
@@ -121,3 +136,8 @@ function constructAMatchCard(matchesDiv, match) {
     <li>Damage Per Minute: ${(match.physDmgToChamps+match.magicDmgToChamps)/(match.matchDur/60)}</li>
     `;
 }
+
+
+
+
+

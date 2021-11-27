@@ -16,6 +16,9 @@ public class Match {
     private Long id;
 
     @Column
+    private String summonerName;
+
+    @Column
     private String matchPuuId;
 
     @Column

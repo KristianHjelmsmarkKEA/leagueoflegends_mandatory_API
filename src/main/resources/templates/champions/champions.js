@@ -1,11 +1,27 @@
+const queryString = window.location.search;
+const URLParams = new URLSearchParams(queryString);
+const puuId = URLParams.get("puuId");
 const championGalleryDiv = document.getElementById("champion-gallery");
-let champions;
+let summonerId;
 
-fetch("http://ddragon.leagueoflegends.com/cdn/11.22.1/data/en_US/champion.json")
+function getSummonerId() {
+    if ()
+
+}
+
+
+
+fetch(localurl + "/champions/")
+    .then(response => response.json())
+    .then(matches => {
+        matches.map(createMatchCard);
+        dbMatches = matches.matchId;
+    });
+
+fetch("https://euw1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/" + summmonerid + "?api_key=" + apikey)
     .then(response => response.json())
     .then(result => {
-        champions= result.results;
-        champions.map(champion => createChampionCard(champion));
+        console.log(result);
     });
 
 function createChampionCard(champion) {
@@ -17,6 +33,5 @@ function createChampionCard(champion) {
     `;
 
     championGalleryDiv.appendChild(cardElement);
-
 
 }
