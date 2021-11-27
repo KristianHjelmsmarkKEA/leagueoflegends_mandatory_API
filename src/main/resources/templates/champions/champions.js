@@ -2,10 +2,10 @@
 fetch("http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion.json")
     .then(response => response.json())
     .then(champions => {
-
-
-        saveChampions(champions)
-        console.log(champions);
+        for (const key in champions.data){
+            saveChampion(`${key}`)
+        }
+        console.log(champions.data);
     })
 
 const championGalleryDiv = document.getElementById("champion-gallery");
@@ -25,14 +25,14 @@ function createChampion(divElement, champion){
     `;
 }
 
-function saveChampions(champions) {
+function saveChampion(champion) {
+/*Vi kan fetche fra ddragon https://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion/Aatrox.json ny fetch
+med det her linkså kan vi hente ID og alt muligt andet fra champions og billede osv. Det finder vi ud af.
+ */
+
     let championToSave = {
-
-        championId: champions.data.Aatrox.key,
-        championImage: champions.data.Aatrox.name
-    };
-    console.log(championToSave);
-
+            championName: champion
+    }
     fetch(localurl + "/champions", {
         method: "POST",
         headers: {"Content-type": "application/json"},
@@ -47,6 +47,7 @@ function saveChampions(champions) {
     })
         .catch(error => console.log("network error" + error));
 }
+
 
 
 
