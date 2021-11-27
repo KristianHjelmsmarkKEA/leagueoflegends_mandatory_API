@@ -1,37 +1,52 @@
-const queryString = window.location.search;
-const URLParams = new URLSearchParams(queryString);
-const puuId = URLParams.get("puuId");
+
+fetch("http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/champion.json")
+    .then(response => response.json())
+    .then(champions => {
+
+
+        saveChampions(champions)
+        console.log(champions);
+    })
+
 const championGalleryDiv = document.getElementById("champion-gallery");
-let summonerId;
 
-function getSummonerId() {
-    if ()
-
+function addChampionInfoToDivList(champion){
+    const championToDiv = document.createElement("div");
+    championGalleryDiv.appendChild(championToDiv);
+    createChampion(championToDiv, champion);
 }
 
-
-
-fetch(localurl + "/champions/")
-    .then(response => response.json())
-    .then(matches => {
-        matches.map(createMatchCard);
-        dbMatches = matches.matchId;
-    });
-
-fetch("https://euw1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/" + summmonerid + "?api_key=" + apikey)
-    .then(response => response.json())
-    .then(result => {
-        console.log(result);
-    });
-
-function createChampionCard(champion) {
-    const cardElement = document.createElement("div");
-
-    cardElement.innerHTML = `
-        <p>${escapeHTML(champion.data)}<p/>
-        <p>${escapeHTML(champion.key)}<p/>
+function createChampion(divElement, champion){
+    championGalleryDiv.appendChild(divElement);
+    divElement.innerHTML = `
+    <ul> 
+    <li>${escapeHTML(champion.championName.toString())}</li>
+    </ul>
     `;
-
-    championGalleryDiv.appendChild(cardElement);
-
 }
+
+function saveChampions(champions) {
+    let championToSave = {
+
+        championId: champions.data.Aatrox.key,
+        championImage: champions.data.Aatrox.name
+    };
+    console.log(championToSave);
+
+    fetch(localurl + "/champions", {
+        method: "POST",
+        headers: {"Content-type": "application/json"},
+        body: JSON.stringify(championToSave)
+    }).then(response => {
+        if (response.status === 200) {
+            addChampionInfoToDivList(championToSave);
+            console.log(championToSave)
+        } else {
+            console.log("Champion not created", response.status);
+        }
+    })
+        .catch(error => console.log("network error" + error));
+}
+
+
+

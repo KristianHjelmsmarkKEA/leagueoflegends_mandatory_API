@@ -7,8 +7,6 @@ const matchHistoryGalleryDiv = document.getElementById("match-history-gallery");
 const championMasteryDiv = document.getElementById("upperInformationBox");
 
 
-
-
 fetch(localurl + "/matches/" + puuId)
     .then(response => response.json())
     .then(matches => {
@@ -102,7 +100,7 @@ function saveMatchInformation(match) {
 const championMasteryButton = document.createElement("a");
 
 championMasteryButton.innerHTML = `
-<a href="../champions.html?puuId=${puuId}">
+<a href="../champions/champions.html?puuId=${puuId}">
 <button>Summoner Champion Mastery List</button>
 </a>
 `;
