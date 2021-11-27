@@ -18,7 +18,7 @@ fetch(localurl + "/matches/" + puuId)
 
 document.getElementById("update-match-history").addEventListener("click", getMatchIds);
 
-function deleteGallery() {
+function deleteMatchHistory() {
     fetch(localurl + "/matches/delete/all/", {
         method: "DELETE"
     }).then(response => {
@@ -31,7 +31,7 @@ function deleteGallery() {
 }
 
 function getMatchIds(){
-    deleteGallery()
+    deleteMatchHistory()
 
     fetch("https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuId + "/ids?start=0&count=5&api_key=" + riotKey)
         .then(response => response.json())

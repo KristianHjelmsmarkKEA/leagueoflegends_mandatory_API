@@ -51,9 +51,12 @@ public class Champions {
         }).orElse("Champion not found");
     }
 
-    @DeleteMapping("/champion/{id}")
+    @DeleteMapping("/champions/{id}")
     public void deleteChampion(@PathVariable Long id) {
         champions.deleteById(id);
     }
+
+    @DeleteMapping("/champions/delete/all")
+    public void deleteAllChampions() {champions.deleteAll();}
 
 }
