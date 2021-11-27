@@ -4,10 +4,25 @@
     border-width: 1px;
     border-style: solid;
     border-color: #c4d9df #a4c3ca #83afb7;
-    width: 500px;
+    width: 375px;
     height: 35px;
     padding: 10px;
     margin: 100px auto 50px;
+}
+
+#button-champ{
+    background-color: #6cbb6b;
+    border-radius: 3px 50px 50px 3px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #7eba7c #578e57 #447d43;
+    margin: 0 0 0 10px;
+    height: 35px;
+    padding: 0;
+    width: 225px;
+    cursor: pointer;
+    font: bold 14px Arial, Helvetica;
+    color: #23441e;
 }
 
 #update-match-history {

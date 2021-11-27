@@ -101,7 +101,7 @@ const championMasteryButton = document.createElement("a");
 
 championMasteryButton.innerHTML = `
 <a href="../champions/champions.html?puuId=${puuId}">
-<button>Summoner Champion Mastery List</button>
+<button id="button-champ">Champion Mastery</button>
 </a>
 `;
 championMasteryDiv.appendChild(championMasteryButton);
