@@ -1,9 +1,33 @@
 #upperInformationBox {
-    margin-top: 60px;
-    width: 80%;
-    margin-right: auto;
-    margin-left: auto;
+    background-color: #eaf8fc;
+    border-radius: 35px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #c4d9df #a4c3ca #83afb7;
+    width: 500px;
+    height: 35px;
+    padding: 10px;
+    margin: 100px auto 50px;
 }
+
+#update-match-history {
+    background-color: #6cbb6b;
+    border-radius: 50px 3px 3px 50px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #7eba7c #578e57 #447d43;
+    margin: 0 0 0 0px;
+    height: 35px;
+    padding: 0;
+    width: 130px;
+    cursor: pointer;
+    font: bold 14px Arial, Helvetica;
+    color: #23441e;
+}
+body{
+    background-color: lightblue;
+}
+
 #box {
     margin-top: 60px;
     width: 80%;
