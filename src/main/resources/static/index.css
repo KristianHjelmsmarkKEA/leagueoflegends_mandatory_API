@@ -1,0 +1,18 @@
+body{
+    background-color: lightblue;
+}
+
+a{
+    background-color: #6cbb6b;
+    border-radius: 3px 3px 3px 3px;
+    border-style: solid;
+    border-color: #7eba7c #578e57 #447d43;
+    margin: 0 0 0 10px;
+    height: 35px;
+    padding: 0;
+    width: 225px;
+    cursor: pointer;
+    font: bold 14px Arial, Helvetica;
+    color: #23441e;
+    text-decoration: none;
+}

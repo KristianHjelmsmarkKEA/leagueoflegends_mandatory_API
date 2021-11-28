@@ -100,8 +100,8 @@ function saveMatchInformation(match) {
 const championMasteryButton = document.createElement("a");
 
 championMasteryButton.innerHTML = `
-<a href="../champions/champions.html?puuId=${puuId}">
-<button id="button-champ">Champion Mastery</button>
+<a href="../championstest/champions.html?puuId=${puuId}">
+<button id="button-champ">Champions</button>
 </a>
 `;
 championMasteryDiv.appendChild(championMasteryButton);

@@ -1,1 +1,0 @@
-const localurl = "http://localhost:9191";
